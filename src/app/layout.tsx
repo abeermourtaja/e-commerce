@@ -1,14 +1,14 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Exo } from "next/font/google";
 import "./globals.css";
+import Navbar from "./_components/navbar/Navbar";
+import { Toaster } from "sonner";
+import Footer from "./_components/footer/page";
+import Wrapper from "./_components/wrapper";
+import TanStackProvider from "@/providers/TanStackProvider";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const exo = Exo({
+  variable: "--font-exo",
   subsets: ["latin"],
 });
 
@@ -25,9 +25,18 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${exo.className} `}
       >
-        {children}
+        <TanStackProvider>
+
+        <Wrapper>
+          <Navbar></Navbar>
+        
+          {children}
+          </Wrapper>
+          <Toaster/>
+          <Footer></Footer>
+        </TanStackProvider>
       </body>
     </html>
   );
